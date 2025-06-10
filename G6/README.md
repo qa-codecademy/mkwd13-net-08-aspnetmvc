@@ -28,5 +28,5 @@ This repository will contain every piece of material about the subject. It will 
 
 ## Contact
 
-* Trainer: trainermail
-* Assistant: aasistantmail
+* Trainer: stojanovska_tijana@outlook.com
+* Assistant: aleksandarmilovski1@gmail.com

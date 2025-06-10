@@ -28,5 +28,5 @@ This repository will contain every piece of material about the subject. It will 
 
 ## Contact
 
-* Trainer: trainermail
-* Assistant: aasistantmail
+* Trainer: Ilija Mitev (*ilija.mitev3@gmail.com*)
+* Co-Trainer: Hristijan Taseski (*hristijan.taseski@gmail.com*)
