@@ -31,7 +31,7 @@ namespace Qinshift.Models.Database
                     FirstName = "Jill",
                     LastName = "Jillsky",
                     DateOfBirth = DateTime.Now.AddYears(-37).AddDays(12),
-                    ActiveCourse = Courses[3]
+                    ActiveCourse = Courses[2]
                 },
                 new()
                 {
@@ -39,7 +39,7 @@ namespace Qinshift.Models.Database
                     FirstName = "John",
                     LastName = "Doe",
                     DateOfBirth = DateTime.Now.AddYears(-30).AddDays(-23),
-                    ActiveCourse = Courses[3]
+                    ActiveCourse = Courses[1]
                 },
                 new()
                 {
