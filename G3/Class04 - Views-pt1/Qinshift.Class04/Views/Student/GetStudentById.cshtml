@@ -1,0 +1,35 @@
+﻿@model Qinshift.Class04.Models.DtoModels.StudentWithCourseDto
+
+<h1>Get Student By Id</h1>
+
+@if(Model is null)
+{
+	<p>No student was found with that id !!!</p>
+}
+else
+{
+	<div>
+		<h4>Student with course DTO</h4>
+	<hr />
+	<dl class="row">
+		<dt class="com-sm-2">
+			Full Name
+		</dt>
+		<dd class="com-sm-10">
+			@Model.FullName
+		</dd>
+		<dt class="com-sm-2">
+			Age
+		</dt>
+		<dd class="com-sm-10">
+			@Model.Age
+		</dd>
+		<dt class="com-sm-2">
+			Name of course
+		</dt>
+		<dd>
+			@Model.NameOfCourse
+		</dd class="com-sm-10">
+	</dl>
+	</div>
+}

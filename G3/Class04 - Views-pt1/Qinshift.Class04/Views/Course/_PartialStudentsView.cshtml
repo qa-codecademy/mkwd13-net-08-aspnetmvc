@@ -1,0 +1,14 @@
+﻿@model IEnumerable<Qinshift.Class04.Models.DtoModels.StudentDTO>
+
+
+<!-- _PartialView.cshtml -->
+
+	<div>
+		<span>This is partial view</span>
+		<ul>
+		@foreach(var item in Model)
+		{
+			<li>@item.FullName</li>
+		}
+		</ul>
+	</div>

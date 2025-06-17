@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Qinshift.Class04.Models.DtoModels.StudentWithCourseDto>
+
+	<h1>Index</h1>
+	<table>
+		<thead>
+			<tr>
+				<th>
+					Name
+				</th>
+				<th>
+					Age
+				</th>
+				<th>
+					Name of course
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+		@foreach(var item in Model)
+		{
+			<tr>
+				<td>
+					@item.FullName
+				</td>
+				<td>
+					@item.Age
+				</td>
+				<td>
+					@item.NameOfCourse
+				</td>
+				<td>
+					@* calling other action in the same controller and passing the input parametar needed for that action *@
+					@Html.ActionLink("Details", "GetStudentById", new {id = item.Id })
+				</td>
+			</tr>
+		}
+		</tbody>
+	</table>
