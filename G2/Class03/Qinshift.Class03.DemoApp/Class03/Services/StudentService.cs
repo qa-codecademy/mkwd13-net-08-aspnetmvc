@@ -25,5 +25,14 @@ namespace Class03.Services
 
             return studentWithCourse;
         }
+
+        public List<ListAllStudentsDto> GetAllStudents() 
+        {
+            return InMemoryDb.Students.Select(student =>
+            new ListAllStudentsDto
+            {
+                FullName = $"{student.FirstName} {student.LastName}"
+            }).ToList();
+        }
     }
 }
