@@ -37,7 +37,7 @@ Razor syntax supports C# and uses the `@` symbol to transition from HTML to C#¹
     }
     <p>The greeting is: @greetingMessage </p>
     ```
-#### If statement in a View
+## If statement in a View
 
 ```csharp cshtml
 @if (Model is Null)
@@ -46,7 +46,7 @@ Razor syntax supports C# and uses the `@` symbol to transition from HTML to C#¹
 }
 ```
 
-#### For loop in a View
+## For loop in a View
 
 ```csharp cshtml
 @model IEnumerable<Qinshift.Class04.Models.DtoModels.StudentDTO>
@@ -63,11 +63,11 @@ Razor syntax supports C# and uses the `@` symbol to transition from HTML to C#¹
 	
 > Note that Razor generates an HTML view from the CSHTML file. C# does not render on the client machine itself
 
-### ViewStart and ViewImports
+## ViewStart and ViewImports
 
 ViewStart and ViewImports are views that affect all the views that we create in our ASP.NET application. They are not imported or used. If the framework finds them it uses them automatically. They are placed directly in the Views folder. Both of these views start with an **\_** before their names.
 
-#### ViewStart
+## ViewStart
 
 When we want to use the same code in every view that we create we use the ViewStart view. In it, we can write some code and the razor engine will execute that code upon every loading of any view. Usually, in this view, we write code that is repeated on every view such as adding a layout.
 
@@ -78,15 +78,15 @@ When we want to use the same code in every view that we create we use the ViewSt
 }
 ```
 
-#### ViewImports
+## ViewImports
 
 As by the name, ViewImports is a view where we store all our imports for every view that we create. This is a view where we usually write using statements that we need in all of our views. For instance, if we need a using statement for our models we create a using statement in the ViewImports to the folder Models so that we don't have to write the whole namespace when importing models in our views.
 
 ```csharp cshtml
-using SEDC.PizzApp.Models
+@using Qinshift.Class04.Models
 ```
 
-### Other shared Views
+## Other shared Views
 
 We can create our shared views if we need them. All views that can be used multiple times on different places and occasions are added in the Shared folder. These views can then be accessed whenever we need them. Usually, these views are connected to some general that all views have in common such as an Error or a Thank You page.
 
