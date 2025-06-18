@@ -1,0 +1,32 @@
+﻿@model CreateStudentViewModel
+
+@{
+	ViewData["Title"] = "Create Student";
+}
+
+<div class="container mt-5">
+	<h2 class="mb-4 text-warning">Create Student (using Tag Helpers)</h2>
+
+	<form method="post">
+
+		<div class="mb-3">
+			<label class="form-label">First Name</label>
+			<input asp-for="FirstName" class="form-control" />
+		</div>
+
+		<div class="mb-3">
+			<label class="form-label">Last Name</label>
+			<input asp-for="LastName" class="form-control" />
+		</div>
+
+		<div class="mb-3">
+			<label class="form-label">Date of Birth</label>
+			<input asp-for="DateOfBirth" class="form-control" type="date" />
+		</div>
+
+		<div class="mt-5">
+			<button type="submit" class="btn btn-outline-warning">Add Student</button>
+			<a asp-action="Index" class="btn btn-outline-secondary">Back to Students</a>
+		</div>
+	</form>
+</div>

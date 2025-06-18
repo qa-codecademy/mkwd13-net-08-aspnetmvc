@@ -18,5 +18,12 @@ namespace Qinshift.ViewsPartTwo.Controllers
 
             return View(students);
         }
+
+        // /student/create
+        public IActionResult Create()
+        {
+            CreateStudentViewModel createStudentViewModel = new();
+            return View(createStudentViewModel);
+        }
     }
 }
