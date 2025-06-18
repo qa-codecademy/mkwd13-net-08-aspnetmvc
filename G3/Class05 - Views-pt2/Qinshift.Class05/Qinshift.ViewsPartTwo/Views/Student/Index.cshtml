@@ -1,0 +1,40 @@
+﻿@* @model List<Qinshift.ViewsPartTwo.Models.ViewModels.StudentViewModel> *@
+@model List<StudentViewModel>
+@{
+	ViewData["Title"] = "Students";
+	string pageTitle = "All Students";
+}
+
+@* This is a comment *@
+
+<div class="container mt-5">
+	<h2 class="mb-4">@pageTitle</h2>
+
+	<table class="table table-bordered table-striped">
+		<thead class="text-warning bg-white">
+			<tr>
+				<th>Full Name</th>
+				<th>Age</th>
+				<th>Active Course</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (StudentViewModel student in Model)
+			{
+				<tr>
+					<td>@student.FullName</td>
+					<td>@student.Age</td>
+					@* @if (student.ActiveCourseName == "No Course")
+					{
+						<td class="text-danger">@student.ActiveCourseName</td>
+					}
+					else
+					{
+						<td>@student.ActiveCourseName</td>
+					} *@
+					<td class="@(student.ActiveCourseName == "No Course" ? "text-danger" : string.Empty)">@student.ActiveCourseName</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+</div>
