@@ -50,6 +50,7 @@ namespace Qinshift.ViewsPartTwo.Controllers
             return RedirectToAction("Index");
         }
 
+        // HOMEWORK :)
         public IActionResult Edit(int studentId)
         {
             return View();
