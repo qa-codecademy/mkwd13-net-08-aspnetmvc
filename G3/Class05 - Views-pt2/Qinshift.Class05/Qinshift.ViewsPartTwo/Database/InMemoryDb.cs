@@ -59,7 +59,8 @@ namespace Qinshift.ViewsPartTwo.Database
                 new() { Id = 1, Name = "C# Basic", NumberOfClasses = 40 },
                 new() { Id = 2, Name = "C# Advanced", NumberOfClasses = 60 },
                 new() { Id = 3, Name = "Database development and design", NumberOfClasses = 28 },
-                new() { Id = 4, Name = "ASP.NET MVC", NumberOfClasses = 40 }
+                new() { Id = 4, Name = "ASP.NET MVC", NumberOfClasses = 40 },
+                new() { Id = 5, Name = "ASP.NET Web Api", NumberOfClasses = 60 }
             };
         }
     }

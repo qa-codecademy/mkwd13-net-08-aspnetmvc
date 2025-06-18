@@ -7,7 +7,7 @@
 <div class="container mt-5">
 	<h2 class="mb-4 text-warning">Create Student (using Tag Helpers)</h2>
 
-	<form method="post">
+	<form asp-controller="Student" asp-action="Create" method="post">
 
 		<div class="mb-3">
 			<label class="form-label">First Name</label>
@@ -24,9 +24,57 @@
 			<input asp-for="DateOfBirth" class="form-control" type="date" />
 		</div>
 
+		<div class="mb-3">
+			<label class="form-label">Active Course</label>
+			<select asp-for="ActiveCourseId" class="form-select"
+					asp-items="@(new SelectList(Model.Courses, "Id", "Name"))">
+				<option value="">--- Select Course ---</option>
+			</select>
+		</div>
+
 		<div class="mt-5">
 			<button type="submit" class="btn btn-outline-warning">Add Student</button>
 			<a asp-action="Index" class="btn btn-outline-secondary">Back to Students</a>
 		</div>
+
 	</form>
+</div>
+
+
+
+@* ======== Form created using Html Helpers ======== *@
+
+<div class="container mt-5">
+	<h2 class="mb-4 text-danger">Create Student (using HTML Helpers)</h2>
+
+	@using (Html.BeginForm("Create", "Student", FormMethod.Post))
+	{
+		<div class="mb-3">
+			@Html.LabelFor(m => m.FirstName, htmlAttributes: new { @class = "form-label" })
+			@Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+		</div>
+
+		<div class="mb-3">
+			@Html.LabelFor(m => m.LastName, htmlAttributes: new { @class = "form-label" })
+			@Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+		</div>
+
+		<div class="mb-3">
+			@Html.LabelFor(m => m.DateOfBirth, htmlAttributes: new { @class = "form-label" })
+			@Html.TextBoxFor(m => m.DateOfBirth, new { @class = "form-control", type = "date" })
+		</div>
+
+		<div class="mb-3">
+			@Html.LabelFor(m => m.ActiveCourseId, htmlAttributes: new { @class = "form-label" })
+			@Html.DropDownListFor(m => m.ActiveCourseId,
+						new SelectList(Model.Courses, "Id", "Name"),
+						"-- Select a Course --",
+						new { @class = "form-select" })
+		</div>
+
+		<div class="mt-5">
+			<button type="submit" class="btn btn-outline-danger">Add Student</button>
+			@Html.ActionLink("Back to Students", "Index", "Student", null, new { @class = "btn btn-outline-secondary" })
+		</div>
+	}
 </div>
