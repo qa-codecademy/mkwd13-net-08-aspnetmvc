@@ -1,4 +1,5 @@
 ﻿using Class04.Models.DtoModel;
+using Class04.Models.ViewModels;
 using Class04.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -35,5 +36,17 @@ namespace Class04.Controllers
             return View(student);
         }
 
+        [HttpGet("createStudent")]
+        public IActionResult CreateStudent()
+        {
+            return View();
+        }
+
+        [HttpPost("createStudent")]
+        public IActionResult CreateStudent(CreateStudentVM createStudentVM) 
+        { 
+            _studentService.CreateStudent(createStudentVM);
+            return RedirectToAction("GetAllStudents");
+        }
     }
 }

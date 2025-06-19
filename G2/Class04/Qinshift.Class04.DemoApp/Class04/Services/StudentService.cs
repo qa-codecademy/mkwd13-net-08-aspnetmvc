@@ -1,6 +1,7 @@
 ﻿using Class04.Database;
 using Class04.Models.DtoModel;
 using Class04.Models.Entites;
+using Class04.Models.ViewModels;
 
 namespace Class04.Services
 {
@@ -29,6 +30,20 @@ namespace Class04.Services
 
             return new StudentWithCourseDto(student.Id, student.FirstName, student.LastName, student.DateOfBirth, student.ActiveCourse.Name);
 
+        }
+
+        public void CreateStudent(CreateStudentVM viewModel)
+        {
+            Student entity = new Student
+            {
+                Id = InMemoryDb.Students.Count + 1,
+                FirstName = viewModel.FirstName,
+                LastName = viewModel.LastName,
+                DateOfBirth = viewModel.DateOfBirth,
+                ActiveCourse = InMemoryDb.Courses[2]
+            };
+
+            InMemoryDb.Students.Add(entity);
         }
     }
 }
