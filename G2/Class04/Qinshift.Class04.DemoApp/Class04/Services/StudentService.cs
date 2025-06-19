@@ -8,7 +8,7 @@ namespace Class04.Services
     {
         public List<StudentWithCourseDto> GetAllStudents()
         {
-            List<StudentWithCourseDto> students = InMemoryDb.Students.Select(x=> new StudentWithCourseDto(x.Id, x.FirstName, x.LastName, x.DateOfBirth, x.ActiveCourse.Name)).ToList();
+            List<StudentWithCourseDto> students = InMemoryDb.Students.Select(x => new StudentWithCourseDto(x.Id, x.FirstName, x.LastName, x.DateOfBirth, x.ActiveCourse.Name)).ToList();
 
             return students;
             //List<StudentWithCourseDto> students = InMemoryDb.Students.Select(x => new StudentWithCourseDto
@@ -22,12 +22,13 @@ namespace Class04.Services
         {
             Student student = InMemoryDb.Students.SingleOrDefault(x => x.Id == id);
 
-            if (student == null) 
+            if (student == null)
             {
                 return null;
             }
 
             return new StudentWithCourseDto(student.Id, student.FirstName, student.LastName, student.DateOfBirth, student.ActiveCourse.Name);
 
+        }
     }
 }

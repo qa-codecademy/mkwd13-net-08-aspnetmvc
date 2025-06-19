@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Class04.Controllers
 {
-    [Route("students")]
+    [Route("[Controller]")]
     public class StudentController : Controller
     {
         private readonly StudentService _studentService;
@@ -14,6 +14,7 @@ namespace Class04.Controllers
             _studentService = new StudentService();
         }
 
+        //[HttpGet("getAllStudents")]
         public IActionResult GetAllStudents()
         {
             List<StudentWithCourseDto> students = _studentService.GetAllStudents();
@@ -25,6 +26,11 @@ namespace Class04.Controllers
         public IActionResult GetStudentById(int id) 
         {
             StudentWithCourseDto student = _studentService.GetStudentById(id);
+
+            if (student == null) 
+            {
+                return RedirectToAction("Error", "Home");
+            }
 
             return View(student);
         }

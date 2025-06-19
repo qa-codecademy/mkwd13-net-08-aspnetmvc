@@ -1,0 +1,38 @@
+﻿@using Class04.Models.DtoModel
+@model IEnumerable<StudentWithCourseDto>
+
+
+<h2>All Students</h2>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Age
+            </th>
+            <th>
+                Name of Course
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (StudentWithCourseDto item in Model)
+        {
+            <tr>
+                <td>
+                    @item.FullName
+                </td>
+                <td>
+                    @item.Age
+                </td>
+                <td>
+                    @item.NameOfCourse
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
