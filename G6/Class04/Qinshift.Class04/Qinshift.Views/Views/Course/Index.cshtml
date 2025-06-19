@@ -1,0 +1,20 @@
+﻿@model List<CourseWithStudentsViewModel>
+
+@{
+	ViewData["Title"] = "All Courses";
+}
+
+<h2 class="text-warning">All Courses with Students</h2>
+
+@foreach (var course in Model)
+{
+	<div class="container mt-4">
+		<h3 class="text-success">@course.CourseName</h3>
+		<p>Number of classes: @course.NumberOfClasses</p>
+
+		<h4>Enrolled Students:</h4>
+		@Html.Partial("_StudentsListPartial", course.Students)
+
+		<hr />
+	</div>
+}
