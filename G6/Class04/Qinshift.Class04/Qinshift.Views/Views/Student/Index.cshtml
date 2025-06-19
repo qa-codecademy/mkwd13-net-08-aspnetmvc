@@ -1,0 +1,37 @@
+﻿@* @model List<Qinshift.Views.Models.ViewModels.StudentViewModel> *@
+@model List<StudentViewModel>
+
+@{
+    ViewData["Title"] = "All Students";
+    string pageTitle = "All Students";
+}
+
+@* This is a comment in Razor Pages *@
+
+@* <h2>Our first View</h2>  *@
+
+<div class="container mt-5">
+    <h2 class="mb-4">@pageTitle</h2>
+
+    <table class="table table-bordered table-striped">
+        <thead class="text-warning bg-white">
+            <tr>
+                <th>Full Name</th>
+                <th>Age</th>
+                <th>Active Course</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (StudentViewModel student in Model)
+            {
+                <tr>
+                    <td>@student.FullName</td>
+                    <td>@student.Age</td>
+                    <td>@student.ActiveCourseName</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+
