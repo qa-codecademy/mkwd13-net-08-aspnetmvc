@@ -22,7 +22,10 @@ namespace Class05.Controllers
         [HttpGet("create")]
         public IActionResult Create()
         {
-            CreateStudentVM createStudentVM = new(); createStudentVM.Courses = InMemoryDb.Courses.Select(x => new CourseOptionVM
+            CreateStudentVM createStudentVM = new();
+            createStudentVM.FirstName = "Martin";
+            createStudentVM.LastName = "Panovski";
+            createStudentVM.Courses = InMemoryDb.Courses.Select(x => new CourseOptionVM
             {
                 Id= x.Id,
                 Name = x.Name,

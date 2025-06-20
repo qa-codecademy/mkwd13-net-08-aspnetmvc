@@ -1,0 +1,67 @@
+﻿@model CreateStudentVM
+
+<!--HTML HELPER-->
+<div class="container">
+    <h2>Create Student (HTML HELPER)</h2>
+    @using(Html.BeginForm("Create","Student", FormMethod.Post))
+    {
+        <div>
+            @Html.LabelFor(x=> x.FirstName, htmlAttributes: new {@class="form-label"})
+            @Html.TextBoxFor(x=>x.FirstName, new{@class="form-control"})
+        </div>
+        <div>
+            @Html.LabelFor(x => x.LastName, htmlAttributes: new { @class = "form-label" })
+            @Html.TextBoxFor(x => x.LastName, new { @class = "form-control" })
+        </div>
+        <div>
+            @Html.LabelFor(x=>x.DateOfBirth, new {@class="form-label"})
+            @Html.TextBoxFor(x => x.DateOfBirth, new { @class = "form-control", type = "date" })
+        </div>
+        <div>
+            @Html.LabelFor(x => x.ActiveCourseId, new { @class = "form-label" })
+            @Html.DropDownListFor(x=>x.ActiveCourseId,
+                new SelectList(Model.Courses, "Id", "Name"),
+                "Select Course",
+                new{@class = "form-control"}
+            )
+        </div>
+
+        <div>
+            <button type="submit" class="btn btn-primary">Add Student</button>
+            @Html.ActionLink("Go Back", "GetAllStudents", "Student", null, new {@class="btn btn-secondary"})
+        </div>
+    }
+</div>
+
+<!--TAG HELPER-->
+<div class="container">
+    <h2>Create Student (TAG Helper)</h2>
+    <form asp-controller="Student" asp-action="Create" method="post">
+        <div>
+            <label asp-for="FirstName" class="form-label">First Name</label>
+            <input asp-for="FirstName" class="form-control" />
+        </div>
+        <div>
+            <label asp-for="LastName" class="form-label">Last Name</label>
+            <input asp-for="LastName" class="form-control" />
+        </div>
+        <div>
+            <label asp-for="DateOfBirth" class="form-label">Date of Birth</label>
+            <input asp-for="DateOfBirth" type="date" class="form-control" />
+        </div>
+
+        <div>
+            <label>Active Course</label>
+            <select asp-for="ActiveCourseId" class="form-control"
+            asp-items="@(new SelectList(Model.Courses, "Id", "Name"))"
+            >
+            <option value="">Select Course</option>
+            </select>
+        </div>
+        <div>
+            <button type="submit" class="btn btn-primary">Add Student</button>
+            <a asp-action="GetAllStudents" class="btn btn-secondary">Go Back</a>
+        </div>
+    </form>
+
+</div>
