@@ -1,0 +1,19 @@
+﻿@model StudentVM
+
+<div class="container">
+    <h2>Student Detail</h2>
+
+    <dl class="row">
+        <dt>Full Name</dt>
+        <dd>@Model.FullName</dd>
+
+        <dt>Age</dt>
+        <dd>@Model.Age</dd>
+
+        <dt>Active Course Name</dt>
+        <dd>@Model.ActiveCourseName</dd>
+    </dl>
+
+    <a asp-action="GetAllStudents" class="btn btn-primary">Go Back</a>
+
+</div>

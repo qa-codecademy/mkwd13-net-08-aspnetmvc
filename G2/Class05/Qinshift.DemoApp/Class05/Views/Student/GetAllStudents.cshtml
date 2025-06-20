@@ -12,6 +12,7 @@
                     Age
                 </th>
                 <th>Active Course Name</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -21,6 +22,15 @@
                     <td>@student.FullName</td>
                     <td>@student.Age</td>
                     <td>@student.ActiveCourseName</td>
+                    <td>
+                        <a 
+                            asp-action="Details"
+                            asp-controller="Student"
+                            asp-route-id="@student.Id"
+                        >Details</a>
+
+                        @Html.ActionLink("Edit","Edit","Student", new {id = student.Id})
+                    </td>
                 </tr>
             }
         </tbody>
