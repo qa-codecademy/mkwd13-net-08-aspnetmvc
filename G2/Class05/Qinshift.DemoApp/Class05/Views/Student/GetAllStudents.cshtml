@@ -1,0 +1,44 @@
+﻿@model List<StudentVM>
+
+<div class="container">
+    <h2>All Students</h2>
+    <table class="table table-hover table-bordered">
+        <thead>
+            <tr>
+                <th>
+                    Full Name
+                </th>
+                <th>
+                    Age
+                </th>
+                <th>Active Course Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (StudentVM student in Model)
+            {
+                <tr>
+                    <td>@student.FullName</td>
+                    <td>@student.Age</td>
+                    <td>@student.ActiveCourseName</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <a href="/Student/Create" class="btn btn-primary"> Create Student (HTML LINK)</a>
+
+    <!--HTML HELPER-->
+    @Html.ActionLink(
+        linkText: "Create Student (HTML HELPER)",
+        actionName:"Create",
+        controllerName: "Student",
+        routeValues: null,
+        htmlAttributes: new{@class="btn btn-primary"}
+    )
+
+    <!--TAG HELPER-->
+    <a asp-controller="Student" asp-action="Create" class="btn btn-primary">Create Student (TAG HELPER)</a>
+    <a asp-controller="Home" asp-action="Index" class="btn btn-outline-primary">Go Home</a>
+
+</div>
