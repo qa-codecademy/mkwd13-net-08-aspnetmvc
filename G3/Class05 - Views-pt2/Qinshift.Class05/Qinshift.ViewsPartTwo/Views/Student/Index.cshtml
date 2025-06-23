@@ -10,6 +10,18 @@
 <div class="container mt-5">
 	<h2 class="mb-4">@pageTitle</h2>
 
+	@if (ViewBag.WelcomeMessage != null)
+	{
+		<div class="alert alert-warning mb-3">
+			<strong>@ViewBag.WelcomeMessage</strong>
+		</div>
+	}
+
+	@if (TempData.TryGetValue("FormMessage", out var formMessage))
+	{
+		<h4 class="text-success mt-2 mb-3">@formMessage</h4>
+	}
+
 	<table class="table table-bordered table-striped">
 		<thead class="text-warning bg-white">
 			<tr>
@@ -69,4 +81,8 @@
 			<a asp-controller="Home" asp-action="Index" class="btn btn-warning">Go Home</a>
 		</div>
 	</div>
+
+	<p class="mt-3">
+		Today's Date: @ViewData["CurrentDate"]
+	</p>
 </div>

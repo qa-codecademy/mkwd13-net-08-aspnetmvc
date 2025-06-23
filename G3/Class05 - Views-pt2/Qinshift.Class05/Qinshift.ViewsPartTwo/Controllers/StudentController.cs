@@ -17,6 +17,9 @@ namespace Qinshift.ViewsPartTwo.Controllers
                 ActiveCourseName = s.ActiveCourse?.Name ?? "No Course"
             }).ToList();
 
+            ViewData["CurrentDate"] = DateTime.Now.ToShortDateString();
+            ViewBag.WelcomeMessage = "Welcome to the Student Management System";
+
             return View(students);
         }
 
@@ -46,6 +49,8 @@ namespace Qinshift.ViewsPartTwo.Controllers
             };
 
             InMemoryDb.Students.Add(student);
+
+            TempData["FormMessage"] = "Student succesfully created!";
 
             return RedirectToAction("Index");
         }
