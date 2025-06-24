@@ -10,8 +10,4 @@
     <ProjectReference Include="..\Avenga.TodoApp.Domain\Avenga.TodoApp.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Repositories\" />
-  </ItemGroup>
-
 </Project>
