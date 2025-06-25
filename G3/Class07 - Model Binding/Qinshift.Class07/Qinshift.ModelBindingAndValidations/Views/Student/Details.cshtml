@@ -1,0 +1,23 @@
+﻿@model StudentDetailsViewModel
+
+@{
+	ViewData["Title"] = "Student Details";
+}
+
+<h2 class="text-warning">Student Details</h2>
+
+@if (Model is null)
+{
+	<h3 class="text-danger">No student found!</h3>
+}
+else
+{
+	<ul>
+		<li><b>First Name:</b> @Model.FirstName</li>
+		<li><b>Last Name:</b> @Model.LastName</li>
+		<li><b>Email:</b> @Model.Email</li>
+		<li><b>Phone:</b> @Model.PhoneNumber</li>
+		<li><b>Age:</b> @Model.Age</li>
+		<li><b>Adult:</b> @(Model.Age > 18 ? "Yes" : "No")</li>
+	</ul>
+}

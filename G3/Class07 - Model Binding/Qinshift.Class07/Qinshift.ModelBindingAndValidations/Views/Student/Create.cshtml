@@ -1,0 +1,57 @@
+﻿@model CreateStudentViewModel
+
+@{
+	ViewData["Title"] = "Create Student";
+}
+
+<div class="container mt-5">
+	<h2 class="mb-4 text-warning">Create Student (using Tag Helpers)</h2>
+	<h3>@ViewBag.WelcomeMessage</h3>
+
+	<form asp-controller="Student" asp-action="Create" method="post">
+
+		<div class="mb-3">
+			<label class="form-label">First Name</label>
+			<input asp-for="FirstName" class="form-control" />
+			<span asp-validation-for="FirstName" class="text-danger"></span>
+		</div>
+
+		<div class="mb-3">
+			<label class="form-label">Last Name</label>
+			<input asp-for="LastName" class="form-control" />
+			<span asp-validation-for="LastName" class="text-danger"></span>
+		</div>
+
+		<div class="mb-3">
+			<label class="form-label">Date of Birth</label>
+			<input asp-for="DateOfBirth" class="form-control" type="date" />
+			<span asp-validation-for="DateOfBirth" class="text-danger"></span>
+		</div>
+
+		<div class="mb-3">
+			<label class="control-label">Phone Number</label>
+			<input asp-for="PhoneNumber" class="form-control" type="tel"/>
+			<span asp-validation-for="PhoneNumber" class="text-danger"></span>
+		</div>
+
+		<div class="mb-3">
+			<label asp-for="Email" class="control-label"></label>
+			<input asp-for="Email" class="form-control" type="email" />
+			<span asp-validation-for="Email" class="text-danger"></span>
+		</div>
+
+		<div class="mt-5">
+			<button type="submit" class="btn btn-outline-warning">Add Student</button>
+			<a asp-action="Index" class="btn btn-outline-secondary">Back to Students</a>
+		</div>
+
+	</form>
+</div>
+
+@* Enable client-side validations by including the needed JS scripts in the View *@
+@section Scripts {
+	@{
+		// Uncomment to try
+		// await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+}
