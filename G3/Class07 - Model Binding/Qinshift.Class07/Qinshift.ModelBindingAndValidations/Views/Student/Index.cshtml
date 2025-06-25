@@ -36,9 +36,16 @@
 					<td>@student.Age</td>
 					<td>@student.Email</td>
 					<td>
-						<a 
+						<a asp-action="Details"
+						   asp-route-studentId="@student.Id"
 						   class="btn btn-sm btn-outline-secondary">
-							Details 
+							Details (By Route)
+						</a>
+						<a asp-action="FilterBy"
+						   asp-route-fullName="@student.FullName"
+						   asp-route-age="@student.Age"
+						   class="btn btn-sm btn-outline-success">
+							Details (By Query)
 						</a>
 					</td>
 				</tr>
