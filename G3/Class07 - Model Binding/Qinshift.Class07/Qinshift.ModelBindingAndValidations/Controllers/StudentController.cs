@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Qinshift.ModelBindingAndValidations.Database;
-using Qinshift.ModelBindingAndValidations.Models.Domain;
+using Qinshift.ModelBindingAndValidations.Helpers;
 using Qinshift.ModelBindingAndValidations.Models.ViewModels;
 
 namespace Qinshift.ModelBindingAndValidations.Controllers
@@ -9,18 +9,24 @@ namespace Qinshift.ModelBindingAndValidations.Controllers
     {
         public IActionResult Index()
         {
-            List<StudentViewModel> students = InMemoryDb.Students.Select(s => new StudentViewModel
-            {
-                Id = s.Id,
-                FullName = s.GetFullName(),
-                Age = DateTime.Now.Year - s.DateOfBirth.Year,
-                Email = s.Email
-            }).ToList();
+            List<StudentViewModel> students = InMemoryDb.Students.Select(s => s.MapToStudentViewModel()).ToList();
 
             ViewData["CurrentDate"] = DateTime.Now.ToShortDateString();
             ViewBag.WelcomeMessage = "Welcome to the Student Management System";
 
             return View(students);
+        }
+
+        public IActionResult Details(int studentId)
+        {
+            var studentDb = InMemoryDb.Students.FirstOrDefault(s => s.Id == studentId);
+            if (studentDb is null)
+            {
+                return NotFound();
+            }
+
+            var studentDetailsVM = studentDb.ToStudentDetailsVM();
+            return View(studentDetailsVM);
         }
 
         // /student/create
@@ -34,15 +40,7 @@ namespace Qinshift.ModelBindingAndValidations.Controllers
         [HttpPost]
         public IActionResult Create(CreateStudentViewModel model)
         {
-            var student = new Student
-            {
-                Id = InMemoryDb.Students.Count + 1,
-                FirstName = model.FirstName,
-                LastName = model.LastName,
-                Email = model.Email,
-                DateOfBirth = model.DateOfBirth,
-                PhoneNumber = model.PhoneNumber
-            };
+            var student = model.ToStudent();
             InMemoryDb.Students.Add(student);
             TempData["FormMessage"] = "Student succesfully created!";
             return RedirectToAction("Index");
