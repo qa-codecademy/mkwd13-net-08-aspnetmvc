@@ -1,0 +1,47 @@
+﻿@model List<StudentDto>
+
+
+<h1>All students</h1>
+<hr />
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <a class="btn btn-primary" asp-action="Create">Create new student</a>
+        </div>
+    </div>
+    <div class="row">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    @* <th>Fullname</th>
+                    <th>Age</th> *@
+
+                    <th>
+                        Fullname @* @Html.DisplayNameFor(model => model.FullName) *@
+                    </th>
+                    <th>Age</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var std in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => std.FullName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => std.Age)
+                        </td>
+                        <td>
+                            <a asp-action="Details">Details</a>
+                            @Html.ActionLink("Details", "Details");
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
