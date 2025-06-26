@@ -18,9 +18,9 @@
                     <th>Age</th> *@
 
                     <th>
-                        Fullname @* @Html.DisplayNameFor(model => model.FullName) *@
+                        @Html.DisplayNameFor(model => model.FirstOrDefault().FullName)
                     </th>
-                    <th>Age</th>
+                    <th>@Html.DisplayNameFor(model => model.FirstOrDefault().Age)</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -35,7 +35,7 @@
                             @Html.DisplayFor(modelItem => std.Age)
                         </td>
                         <td>
-                            <a asp-action="Details">Details</a>
+                            <a asp-action="Details" asp-route-id="@std.Id">Details</a>
                             @Html.ActionLink("Details", "Details");
                         </td>
                     </tr>
