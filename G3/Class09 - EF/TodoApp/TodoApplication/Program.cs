@@ -1,7 +1,17 @@
+using Microsoft.EntityFrameworkCore;
+using TodoApplication.DataAccess;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+#region Register Database
+// Example 01 (hardcoded conn string)
+string connectionString = "Server=.\\SQLEXPRESS;Database=TodoApplicationDb;Trusted_Connection=True;Integrated Security=true;Encrypt=False;";
+
+builder.Services.AddDbContext<TodoAppDbContext>(options => options.UseSqlServer(connectionString));
+#endregion
 
 var app = builder.Build();
 
