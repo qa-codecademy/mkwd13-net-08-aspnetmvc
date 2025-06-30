@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using TodoApplication.Dtos.Dto;
 using TodoApplication.Dtos.ViewModel;
 using TodoApplication.Services;
 
@@ -15,6 +16,19 @@ namespace TodoApplication.Controllers {
 		public IActionResult Index() {
 			int? categoryId = null;
 			int? statusId = null;
+
+			ViewBag.Filter = new FilterDto();
+
+			if (TempData["HasFilter"] != null) 
+			{
+				ViewBag.Filter.CategoryId = (int)TempData["Category"];
+				categoryId = (int)TempData["Category"];
+				ViewBag.Filter.StatusId = (int)TempData["Status"];
+				statusId = (int)TempData["Status"];
+			}
+
+			ViewBag.Filter.Categories = _filterService.GetCategories();
+			ViewBag.Filter.Statuses = _filterService.GetStatuses();
 
 			var todos = _todoService.GetTodos(categoryId, statusId);
 			return View(todos);

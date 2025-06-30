@@ -20,6 +20,17 @@ namespace TodoApplication.Services {
 
 		public List<TodoDto> GetTodos(int? categoryId, int? statusId) {
 			var todos = _todoRepository.GetAll();
+
+			if(categoryId.HasValue && categoryId.Value > 0) 
+			{
+				todos = todos.Where(t => t.CategoryId == categoryId.Value).ToList();
+			}
+
+			if(statusId.HasValue && statusId > 0) 
+			{
+				todos = todos.Where(t => t.StatusId == statusId.Value).ToList();
+			}
+
 			var result = new List<TodoDto>();
 			
 			foreach (var todo in todos) 

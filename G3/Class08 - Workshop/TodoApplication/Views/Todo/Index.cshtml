@@ -5,6 +5,12 @@
 	<h4 class="text-danger alert alert-danger mt-2 mb-3">@errorMessage</h4>
 }
 
+<div class="row">
+	<div class="col-md-12">
+		@Html.Partial("~/Views/Todo/Partial/_FilterPartial.cshtml", (FilterDto)ViewBag.Filter)
+	</div>
+</div>
+
 	<div class="row">
 		<div class="col-md-12">
 			<table class="table table-bordered table-striped mt-2">
