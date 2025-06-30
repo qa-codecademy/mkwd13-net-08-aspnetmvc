@@ -1,13 +1,16 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using TodoApplication.Dtos.ViewModel;
 using TodoApplication.Services;
 
 namespace TodoApplication.Controllers {
 	[Route("")]
 	public class TodoController : Controller {
 		private readonly TodoService _todoService;
+		private readonly FilterService _filterService;
 
 		public TodoController() {
 			_todoService = new TodoService();
+			_filterService = new FilterService();
 		}
 		public IActionResult Index() {
 			int? categoryId = null;
@@ -34,7 +37,30 @@ namespace TodoApplication.Controllers {
 
 		[HttpGet("add")]
 		public IActionResult AddTodo() {
-			return View();
+			ViewBag.Categories = _filterService.GetCategories();
+			return View("AddTodo");
+		}
+
+		[HttpPost("add")]
+		public IActionResult AddTodo(CreateTodoVM createTodoVM) {
+			if (createTodoVM.CategoryId == 0) {
+				ViewBag.Error = "Please select valid category";
+				ViewBag.Categories = _filterService.GetCategories();
+				return View(createTodoVM);
+			}
+
+			_todoService.AddTodo(createTodoVM);
+			return RedirectToAction("Index");
+		}
+
+		[HttpPost("filter")]
+		public IActionResult Filter(FilterVM filterVM) 
+		{
+			TempData["HasFilter"] = true;
+			TempData["Category"] = filterVM.CategoryId;
+			TempData["Status"] = filterVM.StatusId;
+
+			return RedirectToAction(nameof(Index));
 		}
 	}
 }

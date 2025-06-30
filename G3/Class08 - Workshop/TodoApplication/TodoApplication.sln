@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodoApplication.Services", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodoApplication.Dtos", "..\TodoApplication.Dtos\TodoApplication.Dtos.csproj", "{6343E706-54CB-4AC8-B773-0D056E26E8BF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodoApplication.Mapper", "..\TodoApplication.Mapper\TodoApplication.Mapper.csproj", "{D33EF3B1-79E0-494C-9165-9974FDA5DDAA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{6343E706-54CB-4AC8-B773-0D056E26E8BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6343E706-54CB-4AC8-B773-0D056E26E8BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6343E706-54CB-4AC8-B773-0D056E26E8BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D33EF3B1-79E0-494C-9165-9974FDA5DDAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D33EF3B1-79E0-494C-9165-9974FDA5DDAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D33EF3B1-79E0-494C-9165-9974FDA5DDAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D33EF3B1-79E0-494C-9165-9974FDA5DDAA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

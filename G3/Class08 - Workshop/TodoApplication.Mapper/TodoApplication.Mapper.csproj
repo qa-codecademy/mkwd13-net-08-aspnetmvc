@@ -7,9 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TodoApplication.DataAccess\TodoApplication.DataAccess.csproj" />
+    <ProjectReference Include="..\TodoApplication.Domain\TodoApplication.Domain.csproj" />
     <ProjectReference Include="..\TodoApplication.Dtos\TodoApplication.Dtos.csproj" />
-    <ProjectReference Include="..\TodoApplication.Mapper\TodoApplication.Mapper.csproj" />
   </ItemGroup>
 
 </Project>
