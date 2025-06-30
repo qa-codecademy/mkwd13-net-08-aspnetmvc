@@ -60,7 +60,7 @@ namespace TodoApplication.Controllers {
 			TempData["Category"] = filterVM.CategoryId;
 			TempData["Status"] = filterVM.StatusId;
 
-			return RedirectToAction(nameof(Index));
+			return RedirectToAction("Index");
 		}
 	}
 }
