@@ -1,0 +1,32 @@
+﻿@using ModelBinidingsAndDataAnnotations.Models.ViewModels
+@model List<StudentViewModel>
+
+
+    <h1>Students:</h1>
+
+    <a class="btn btn-outline-primary" asp-action="Create">Create</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model[0].FullName)</th>
+            <th>@Html.DisplayNameFor(model => model[0].Age)</th>
+            <th>@Html.DisplayNameFor(model => model[0].Email)</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach(var student in Model)
+        {
+            <tr>
+                <td>@student.FullName</td>
+                <td>@student.Age</td>
+                <td>@student.Email</td>
+                <td>
+                    <a class="btn btn-outline-primary" asp-action="GetStudentById" asp-route-id="@student.Id">Details (by route)</a>
+                    <a class=" btn btn-outline-primary" asp-action="GetStudentsByQueryFilter" 
+                    asp-route-fullname="@student.FullName" 
+                    asp-route-age="@student.Age">Details (by query)</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
