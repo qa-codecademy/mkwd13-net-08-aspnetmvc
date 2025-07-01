@@ -1,5 +1,7 @@
 using Avenga.TodoApp.DataAccess.Repositories;
 using Avenga.TodoApp.Domain;
+using Avenga.TodoApp.Services.Services;
+using Avenga.TodoApp.Services.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<IRepository<Todo>, TodoRepository>();
+builder.Services.AddScoped<ITodoService, TodoService>();
 
 
 
