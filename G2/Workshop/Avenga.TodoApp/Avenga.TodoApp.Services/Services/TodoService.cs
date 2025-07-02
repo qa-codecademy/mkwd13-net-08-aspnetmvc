@@ -3,6 +3,7 @@ using Avenga.TodoApp.DataAccess.Repositories;
 using Avenga.TodoApp.Domain;
 using Avenga.TodoApp.Services.Dtos;
 using Avenga.TodoApp.Services.Services.Interfaces;
+using Avenga.TodoApp.ViewModels;
 
 namespace Avenga.TodoApp.Services.Services
 {
@@ -14,6 +15,19 @@ namespace Avenga.TodoApp.Services.Services
             _todoRepository = todoRepository;
         }
 
+        public void AddTodo(CreateTodoVM createTodoVM)
+        {
+            var newTodo = new Todo
+            {
+                Id = StaticDb.Todos.Count + 1,
+                Description = createTodoVM.Description,
+                DueDate = createTodoVM.DueDate,
+                CategoryId = createTodoVM.CategoryId,
+                StatusId = 1
+            };
+
+            _todoRepository.Create(newTodo);
+        }
 
         public IEnumerable<TodoDto> GetAllTodos()
         {
@@ -38,5 +52,7 @@ namespace Avenga.TodoApp.Services.Services
             }
             return todosDto;
         }
+
+
     }
 }

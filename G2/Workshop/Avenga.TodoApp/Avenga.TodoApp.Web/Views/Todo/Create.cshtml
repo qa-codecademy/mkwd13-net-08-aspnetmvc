@@ -1,0 +1,29 @@
+﻿@model CreateTodoVM
+
+<div class="container">
+    <div class="row">
+        <h2>Add todo</h2>
+        <div class="col-md-6">
+            <form asp-action="Create" asp-controller="Todo" method="post">
+                <div>
+                    <label asp-for="Description" class="form-label"></label>
+                    <input asp-for="Description" class="form-control"/>
+                </div>
+                <div>
+                    <label asp-for="DueDate" class="form-label"></label>
+                    <input asp-for="DueDate" class="form-control" />
+                </div>
+                <div>
+                    <label asp-for="CategoryId" class="form-label"></label>
+                    <select class="form-select" 
+                            asp-for="CategoryId"
+                            asp-items="@(new SelectList(Model.Categories, "Id", "Name"))">
+                        <option value="0">Select category</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Create</button>
+            </form>
+        </div>
+    </div>
+</div>

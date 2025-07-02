@@ -25,9 +25,11 @@
                 <tbody>
                     @foreach (var todo in Model)
                     {
+                        string overdueClass = todo.DueDate.Date < DateTime.Now.Date ? "bg-danger" : "";
+
                         <tr>
                             <td>@todo.Description</td>
-                            <td>@todo.DueDate.ToShortDateString()</td>
+                            <td class="@overdueClass">@todo.DueDate.ToShortDateString()</td>
                             <td>@todo.Category</td>
                             <td>@todo.Status</td>
                             <td>
@@ -39,7 +41,7 @@
             </table>
             <div class="row">
                 <div class="col-md-3">
-                    <a class="btn btn-primary">Add new todo</a>
+                    <a asp-action="Create" class="btn btn-primary">Add new todo</a>
                 </div>
             </div>
         </div>

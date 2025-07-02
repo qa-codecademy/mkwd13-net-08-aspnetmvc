@@ -9,6 +9,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Avenga.TodoApp.DataAccess\Avenga.TodoApp.DataAccess.csproj" />
     <ProjectReference Include="..\Avenga.TodoApp.Domain\Avenga.TodoApp.Domain.csproj" />
+    <ProjectReference Include="..\Avenga.TodoApp.ViewModels\Avenga.TodoApp.ViewModels.csproj" />
   </ItemGroup>
 
 </Project>

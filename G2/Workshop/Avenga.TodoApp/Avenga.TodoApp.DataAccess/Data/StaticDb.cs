@@ -53,7 +53,7 @@ namespace Avenga.TodoApp.DataAccess.Data
                 {
                     Id = 2,
                     Description = "Clean the kitchen",
-                    DueDate = DateTime.Today.AddDays(1),
+                    DueDate = DateTime.Today.AddDays(-1),
                     CategoryId = 2, // Home
                     StatusId = 1    // Open
                 },
