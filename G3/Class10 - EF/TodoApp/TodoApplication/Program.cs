@@ -1,0 +1,40 @@
+using Microsoft.EntityFrameworkCore;
+using TodoApplication.DataAccess;
+
+var builder = WebApplication.CreateBuilder(args);
+
+// Add services to the container.
+builder.Services.AddControllersWithViews();
+
+#region Register Database
+// Example 01 (hardcoded conn string)
+//string connectionString = "Server=.\\SQLEXPRESS;Database=TodoApplicationDb;Trusted_Connection=True;Integrated Security=true;Encrypt=False;";
+
+// Example 02 (better way)
+string connectionString = builder.Configuration.GetConnectionString("TodoAppConnectionString");
+
+builder.Services.AddDbContext<TodoAppDbContext>(options => options.UseSqlServer(connectionString));
+#endregion
+
+var app = builder.Build();
+
+// Configure the HTTP request pipeline.
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Home/Error");
+    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+    app.UseHsts();
+}
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+
+app.UseRouting();
+
+app.UseAuthorization();
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Todo}/{action=Index}/{id?}");
+
+app.Run();
