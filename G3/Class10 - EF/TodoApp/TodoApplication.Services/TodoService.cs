@@ -12,16 +12,30 @@ namespace TodoApplication.Services
     {
         private readonly ITodoRepository _todoRepository;
         private readonly IRepository<Category> _categoryRepository;
-        private readonly IRepository<Status> _statusReposity;
+        private readonly IRepository<Status> _statusRepository;
 
-        public TodoService()
+        public TodoService(
+            ITodoRepository todoRepository,
+            IRepository<Category> categoryRepository,
+            IRepository<Status> statusRepository)
         {
+            // =====> This class is tightly coupled to concrete repository implementations, which makes it hard for maintainance
+
+            // ===> Using our static InMemoryDatabase implementations 
             //_todoRepository = new TodoRepository();
             //_categoryRepository = new CategoryRepository();
             //_statusReposity = new StatusRepository();
-            _todoRepository = new EFTodoRepository();
-            _categoryRepository = new EFCategoryRepository();
-            _statusReposity = new EFStatusRepository();
+
+            // ===> Now we don't want to use our InMemoryDatabase implementations, we want to use our real Database implementation with Entity Framework
+            //_todoRepository = new EFTodoRepository();
+            //_categoryRepository = new EFCategoryRepository();
+            //_statusReposity = new EFStatusRepository();
+
+            // =====> Instead of directly creating instances, we will use Dependency Injection to inject these dependencies into the constructor
+            _todoRepository = todoRepository;
+            _categoryRepository = categoryRepository;
+            _statusRepository = statusRepository;
+            // HINT: Now if we want to switch back to the InMemoryDb implementation, we just make change in the Dependency Injection configuration in Program.cs
         }
 
         public List<TodoDto> GetTodos(int? categoryId, int? statusId)
@@ -48,7 +62,7 @@ namespace TodoApplication.Services
                     Description = todo.Description,
                     DueDate = todo.DueDate,
                     Category = _categoryRepository.GetById(todo.CategoryId).Name ?? string.Empty,
-                    Status = _statusReposity.GetById(todo.StatusId).Name ?? string.Empty,
+                    Status = _statusRepository.GetById(todo.StatusId).Name ?? string.Empty,
                     StatusId = todo.StatusId,
                 });
             }

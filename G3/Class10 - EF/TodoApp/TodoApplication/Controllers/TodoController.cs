@@ -2,18 +2,23 @@
 using TodoApplication.Dtos.Dto;
 using TodoApplication.Dtos.ViewModel;
 using TodoApplication.Services;
+using TodoApplication.Services.Interfaces;
 
 namespace TodoApplication.Controllers
 {
     public class TodoController : Controller
     {
-        private readonly TodoService _todoService;
-        private readonly FilterService _filterService;
+        private readonly IToDoService _todoService;
+        private readonly IFilterService _filterService;
 
-        public TodoController()
+        public TodoController(
+            IToDoService toDoService,
+            IFilterService filterService)
         {
-            _todoService = new TodoService();
-            _filterService = new FilterService();
+            //_todoService = new TodoService();
+            //_filterService = new FilterService();
+            _todoService = toDoService;
+            _filterService = filterService;
         }
 
         public IActionResult Index()

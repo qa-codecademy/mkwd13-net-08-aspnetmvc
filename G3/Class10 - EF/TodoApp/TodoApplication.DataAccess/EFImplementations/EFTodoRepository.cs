@@ -8,9 +8,12 @@ namespace TodoApplication.DataAccess.EFImplementations
     {
         private readonly TodoAppDbContext _context;
 
-        public EFTodoRepository()
+        // The DbContext is injected via constructor dependency injection
+        // => This allows the repository to interact with the database through Entity Framework
+        // => It represents a session with the database and provides access to the entity db sets (tables)
+        public EFTodoRepository(TodoAppDbContext context)
         {
-            _context = new TodoAppDbContext();
+            _context = context;
         }
 
         public IEnumerable<Todo> GetAll()
@@ -34,6 +37,12 @@ namespace TodoApplication.DataAccess.EFImplementations
                 .Include(todo => todo.Category)
                 .Include(todo => todo.Status)
                 .FirstOrDefault(todo => todo.Id == id);
+
+            // ===> SQL translation: 
+            // SELECT * FROM Todo t
+            // JOIN Category c ON c.Id = t.CategoryId
+            // JOIN Status s ON s.Id = t.StatusId
+            // WHERE t.Id = @id
         }
 
         public IEnumerable<Todo> GetCompletedTodos()
@@ -49,6 +58,9 @@ namespace TodoApplication.DataAccess.EFImplementations
         {
             _context.Todo.Update(entity);
             _context.SaveChanges();
+            // ===> SQL translation: 
+            // UPDATE Todo SET *Columns = Values from entity*
+            // WHERE Id = @entity.Id
         }
 
         public void Add(Todo entity)

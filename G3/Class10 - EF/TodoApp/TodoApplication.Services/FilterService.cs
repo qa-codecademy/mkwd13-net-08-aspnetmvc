@@ -13,12 +13,17 @@ namespace TodoApplication.Services
         private readonly IRepository<Category> _categoryRepository;
         private readonly IRepository<Status> _statusRepository;
 
-        public FilterService()
+        public FilterService(
+            IRepository<Category> categoryRepository,
+            IRepository<Status> statusRepository)
         {
             //_categoryRepository = new CategoryRepository();
             //_statusRepository = new StatusRepository();
-            _categoryRepository = new EFCategoryRepository();
-            _statusRepository = new EFStatusRepository();
+            //_categoryRepository = new EFCategoryRepository();
+            //_statusRepository = new EFStatusRepository();
+
+            _categoryRepository = categoryRepository;
+            _statusRepository = statusRepository;
         }
 
         public List<CategoryDto> GetCategories()

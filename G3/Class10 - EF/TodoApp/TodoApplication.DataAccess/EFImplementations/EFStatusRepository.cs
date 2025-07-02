@@ -7,9 +7,9 @@ namespace TodoApplication.DataAccess.EFImplementations
     {
         private readonly TodoAppDbContext _context;
 
-        public EFStatusRepository()
+        public EFStatusRepository(TodoAppDbContext context)
         {
-            _context = new TodoAppDbContext();
+            _context = context;
         }
 
         public IEnumerable<Status> GetAll()
@@ -24,17 +24,24 @@ namespace TodoApplication.DataAccess.EFImplementations
 
         public void Add(Status entity)
         {
-            throw new NotImplementedException();
+            _context.Status.Add(entity);
+            _context.SaveChanges();
         }
 
         public void Update(Status entity)
         {
-            throw new NotImplementedException();
+            _context.Status.Update(entity);
+            _context.SaveChanges();
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            var status = GetById(id);
+            if (status != null)
+            {
+                _context.Status.Remove(status);
+                _context.SaveChanges();
+            }
         }
 
     }

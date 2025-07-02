@@ -15,11 +15,6 @@ namespace TodoApplication.DataAccess
         public DbSet<Status> Status { get; set; }
         public DbSet<Category> Category { get; set; }
 
-        public TodoAppDbContext()
-        {
-            
-        }
-
         public TodoAppDbContext(DbContextOptions<TodoAppDbContext> options) : base(options)
         {
 
