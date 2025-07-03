@@ -15,10 +15,10 @@ builder.Services.AddControllersWithViews();
 
 #region Register Database
 //First way : hardcoded connection string
-string connectionString = "Server=.\\SQLEXPRESS;Database=TodoAppDb;Trusted_Connection=True;Integrated Security=true;Encrypt=False;";
+//string connectionString = "Server=.\\SQLEXPRESS;Database=TodoAppDb;Trusted_Connection=True;Integrated Security=true;Encrypt=False;";
 
 //Second way - read the connection string from appSettings.json
-//string connectionString = builder.Configuration.GetConnectionString("TodoAppConnectionString");
+string connectionString = builder.Configuration.GetConnectionString("TodoAppConnectionString");
 builder.Services.AddDbContext<ToDoAppDbContext>(options => options.UseSqlServer(connectionString));
 #endregion
 
