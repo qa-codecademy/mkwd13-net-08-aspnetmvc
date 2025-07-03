@@ -17,8 +17,10 @@ builder.Services.AddDbContext<TodoDbContext>(options =>
 });
 
 
-builder.Services.AddScoped<IRepository<Todo>, TodoRepository>();
-builder.Services.AddScoped<IRepository<Category>, CategoryRepository>();
+//builder.Services.AddScoped<IRepository<Todo>, TodoRepository>();
+builder.Services.AddScoped<IRepository<Todo>, TodoEfRepository>();
+//builder.Services.AddScoped<IRepository<Category>, CategoryRepository>();
+builder.Services.AddScoped<IRepository<Category>, CategoryEfRepository>();
 
 builder.Services.AddScoped<ITodoService, TodoService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();

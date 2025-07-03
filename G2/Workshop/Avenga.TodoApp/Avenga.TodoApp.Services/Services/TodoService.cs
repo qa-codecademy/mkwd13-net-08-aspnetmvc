@@ -19,7 +19,6 @@ namespace Avenga.TodoApp.Services.Services
         {
             var newTodo = new Todo
             {
-                Id = StaticDb.Todos.Count + 1,
                 Description = createTodoVM.Description,
                 DueDate = createTodoVM.DueDate,
                 CategoryId = createTodoVM.CategoryId,
@@ -61,8 +60,7 @@ namespace Avenga.TodoApp.Services.Services
                 return false;
             }
             todo.StatusId = 2;
-            var index = _todoRepository.GetAll().ToList().IndexOf(todo);
-            _todoRepository.GetAll().ToList()[index] = todo;
+            _todoRepository.Update(todo);
             return true;
         }
 

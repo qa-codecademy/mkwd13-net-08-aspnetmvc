@@ -38,7 +38,10 @@
                             <td>@todo.Category</td>
                             <td>@todo.Status</td>
                             <td>
-                                <button type="submit" class="btn btn-outline-primary btn-sm" name="@nameof(TodoDto.Id)" value="@todo.Id">Mark as complete</button>
+                                    @if(todo.StatusId == 1)
+                                    {
+                                        <button type="submit" class="btn btn-outline-primary btn-sm" name="@nameof(TodoDto.Id)" value="@todo.Id">Mark as complete</button>
+                                    }
                             </td>
                         </tr>
                     }

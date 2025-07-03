@@ -5,6 +5,7 @@ namespace Avenga.TodoApp.ViewModels
     public class CreateTodoVM
     {
         [Required(ErrorMessage = "Please insert descrpition")]
+        //[MaxLength(10, ErrorMessage = "Description can have only 10 characters.")]
         public string Description { get; set; }
 
         [Required(ErrorMessage = "Please insert due date")]
