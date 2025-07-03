@@ -41,5 +41,25 @@ namespace Avenga.TodoApp.Web.Controllers
             }
             return View(model);
         }
+
+        [HttpPost]
+        public IActionResult MarkComplete(int id)
+        {
+                var response = _todoService.MarkComplete(id);
+            if(!response)
+            {
+                //TempData["ErrorMessage"] = "Todo does not exists!";
+                ViewBag.ErrorMessage = "Todo does not exists!";
+            }
+            return RedirectToAction("Index");
+        }
+
+
+        [HttpPost]
+        public IActionResult RemoveComplete()
+        {
+            _todoService.RemoveComplete();
+            return RedirectToAction("Index");
+        }
     }
 }

@@ -45,7 +45,7 @@ namespace Avenga.TodoApp.Services.Services
                         DueDate = todo.DueDate,
                         Category = StaticDb.Categories.SingleOrDefault(x => x.Id == todo.CategoryId).Name,
                         Status = StaticDb.Statuses.SingleOrDefault(x => x.Id == todo.StatusId).Name,
-                        StatusId = todo.StatusId 
+                        StatusId = todo.StatusId
                     });
                 }
                 return todosDto;
@@ -53,6 +53,28 @@ namespace Avenga.TodoApp.Services.Services
             return todosDto;
         }
 
+        public bool MarkComplete(int todoId)
+        {
+            var todo = _todoRepository.GetById(todoId);
+            if (todo is null)
+            {
+                return false;
+            }
+            todo.StatusId = 2;
+            var index = _todoRepository.GetAll().ToList().IndexOf(todo);
+            _todoRepository.GetAll().ToList()[index] = todo;
+            return true;
+        }
 
+        public void RemoveComplete()
+        {
+            var completedTodos = _todoRepository.GetAll()
+                .Where(x => x.StatusId == 2).ToList();
+
+            foreach (var todo in completedTodos)
+            {
+                _todoRepository.Delete(todo.Id);
+            }
+        }
     }
 }
