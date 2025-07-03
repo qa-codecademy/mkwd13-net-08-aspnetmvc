@@ -19,7 +19,6 @@ namespace Avenga.TodoApp.Services.Services
         {
             var newTodo = new Todo
             {
-                Id = StaticDb.Todos.Count + 1,
                 Description = createTodoVM.Description,
                 DueDate = createTodoVM.DueDate,
                 CategoryId = createTodoVM.CategoryId,
@@ -45,7 +44,7 @@ namespace Avenga.TodoApp.Services.Services
                         DueDate = todo.DueDate,
                         Category = StaticDb.Categories.SingleOrDefault(x => x.Id == todo.CategoryId).Name,
                         Status = StaticDb.Statuses.SingleOrDefault(x => x.Id == todo.StatusId).Name,
-                        StatusId = todo.StatusId 
+                        StatusId = todo.StatusId
                     });
                 }
                 return todosDto;
@@ -53,6 +52,27 @@ namespace Avenga.TodoApp.Services.Services
             return todosDto;
         }
 
+        public bool MarkComplete(int todoId)
+        {
+            var todo = _todoRepository.GetById(todoId);
+            if (todo is null)
+            {
+                return false;
+            }
+            todo.StatusId = 2;
+            _todoRepository.Update(todo);
+            return true;
+        }
 
+        public void RemoveComplete()
+        {
+            var completedTodos = _todoRepository.GetAll()
+                .Where(x => x.StatusId == 2).ToList();
+
+            foreach (var todo in completedTodos)
+            {
+                _todoRepository.Delete(todo.Id);
+            }
+        }
     }
 }
