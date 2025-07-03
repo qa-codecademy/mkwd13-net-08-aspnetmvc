@@ -1,12 +1,21 @@
+using Avenga.TodoApp.DataAccess;
 using Avenga.TodoApp.DataAccess.Repositories;
 using Avenga.TodoApp.Domain;
 using Avenga.TodoApp.Services.Services;
 using Avenga.TodoApp.Services.Services.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+
+builder.Services.AddDbContext<TodoDbContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("TodoDbConnString"));
+});
+
 
 builder.Services.AddScoped<IRepository<Todo>, TodoRepository>();
 builder.Services.AddScoped<IRepository<Category>, CategoryRepository>();
