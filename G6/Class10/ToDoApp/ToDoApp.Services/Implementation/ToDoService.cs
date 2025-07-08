@@ -76,7 +76,7 @@ namespace ToDoApp.Services.Implementation
 
 			if (todo == null) return false;
 
-			todo.StatusId = 2;
+			todo.StatusId = 2; //Completed
 			_toDoRepository.Update(todo);
 
 			return true;
@@ -84,7 +84,7 @@ namespace ToDoApp.Services.Implementation
 
 		public void RemoveComplete()
 		{
-			var completedTodos = _toDoRepository.GetAll().Where(x => x.StatusId == 2);
+			var completedTodos = _toDoRepository.GetAll().Where(x => x.StatusId == 2).ToList();
 			foreach (var todo in completedTodos)
 			{
 				_toDoRepository.Delete(todo.Id);

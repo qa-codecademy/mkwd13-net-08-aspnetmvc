@@ -58,7 +58,7 @@ namespace ToDoApp.Controllers
 		[HttpGet("markComplete")]
 		public IActionResult MarkComplete(int id)
 		{
-			var todoMarkComplete = _todoService.MarkComplete(id);
+			_todoService.MarkComplete(id);
 			return RedirectToAction("Index");
 		}
 
