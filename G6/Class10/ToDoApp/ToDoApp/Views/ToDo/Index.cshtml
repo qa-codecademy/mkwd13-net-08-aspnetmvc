@@ -1,0 +1,35 @@
+﻿@using ToDoApp.Models.ViewModels
+@using ToDoApp.Models.Dtos
+@model List<ToDosViewModel>
+
+    <div class="row">
+        <div class="col-md-12">
+            @Html.Partial("~/Views/ToDo/Partial/_FilterPartial.cshtml", (FilterDto)ViewBag.Filter)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-bordered table-striped mt-2">
+                <thead>
+                    <tr>
+                        <th>Description</th>
+                        <th>DueDate</th>
+                        <th>Category</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach(ToDosViewModel todo in Model)
+                {
+                    string dueDateClass = todo.DueDate < DateTime.Now ? "bg-danger" : ""; 
+                    <tr>
+                        <td>@todo.Description</td>
+                        <td class="@dueDateClass">@todo.DueDate</td>
+                        <td>@todo.CategoryName</td>
+                        <td>@todo.StatusName</td>
+                    </tr>
+                }
+            </tbody>
+            </table>
+        </div>
+    </div>
