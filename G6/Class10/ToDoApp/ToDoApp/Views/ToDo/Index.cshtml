@@ -7,29 +7,49 @@
             @Html.Partial("~/Views/ToDo/Partial/_FilterPartial.cshtml", (FilterDto)ViewBag.Filter)
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-12">
-            <table class="table table-bordered table-striped mt-2">
-                <thead>
-                    <tr>
-                        <th>Description</th>
-                        <th>DueDate</th>
-                        <th>Category</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                @foreach(ToDosViewModel todo in Model)
-                {
-                    string dueDateClass = todo.DueDate < DateTime.Now ? "bg-danger" : ""; 
-                    <tr>
-                        <td>@todo.Description</td>
-                        <td class="@dueDateClass">@todo.DueDate</td>
-                        <td>@todo.CategoryName</td>
-                        <td>@todo.StatusName</td>
-                    </tr>
-                }
-            </tbody>
-            </table>
-        </div>
-    </div>
+<div class="row">
+	<div class="col-md-12">
+		<table class="table table-bordered table-striped mt-2">
+			<thead>
+				<tr>
+					<th>Description</th>
+					<th>DueDate</th>
+					<th>Category</th>
+					<th>Status</th>
+					<th class="w-25">Actions</th>
+
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (ToDosViewModel todo in Model)
+				{
+					string dueDate = todo.DueDate < DateTime.Now ? "bg-danger" : "";
+					<tr>
+						<td>@todo.Description</td>
+						<td class="@dueDate">@todo.DueDate</td>
+						<td>@todo.CategoryName</td>
+						<td>@todo.StatusName</td>
+						<td>
+							@if (todo.StatusName == "Completed")
+							{
+								<button disabled type="submit" class="btn btn-outline-primary btn-sm">Mark Complete</button>
+							}
+							else
+							{
+								<a asp-action="MarkComplete" class="btn btn-outline-primary btn-sm"
+								   name="@nameof(ToDosViewModel.Id)" asp-route-id="@todo.Id">Mark Complete</a>
+							}
+
+						</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+		<div>
+			<a asp-action="AddTodo" class="btn btn-outline-primary">Create Todo</a>
+		</div>
+		<div class="mt-2">
+			<a asp-action="RemoveComplete" class="btn btn-outline-danger">Remove Complete</a>
+		</div>
+	</div>
+</div>

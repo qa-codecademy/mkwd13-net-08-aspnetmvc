@@ -1,4 +1,5 @@
-﻿using ToDoApp.DataAccess.Implementation;
+﻿using ToDoApp.DataAccess.EFImplementation;
+using ToDoApp.DataAccess.Implementation;
 using ToDoApp.DataAccess.Interfaces;
 using ToDoApp.Domain;
 using ToDoApp.Models.ViewModels;
@@ -56,5 +57,38 @@ namespace ToDoApp.Services.Implementation
 
             return result;
         }
-    }
+
+		public void AddTodo(CreateTodoViewModel createTodo)
+		{
+			var newTodo = new ToDo
+			{
+				Description = createTodo.Description,
+				CategoryId = createTodo.CategoryId,
+				DueDate = createTodo.DueDate,
+				StatusId = 1
+			};
+			_toDoRepository.Create(newTodo);
+		}
+
+		public bool MarkComplete(int todoId)
+		{
+			var todo = _toDoRepository.GetById(todoId);
+
+			if (todo == null) return false;
+
+			todo.StatusId = 2;
+			_toDoRepository.Update(todo);
+
+			return true;
+		}
+
+		public void RemoveComplete()
+		{
+			var completedTodos = _toDoRepository.GetAll().Where(x => x.StatusId == 2);
+			foreach (var todo in completedTodos)
+			{
+				_toDoRepository.Delete(todo.Id);
+			}
+		}
+	}
 }

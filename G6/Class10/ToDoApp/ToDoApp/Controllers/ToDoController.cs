@@ -54,5 +54,39 @@ namespace ToDoApp.Controllers
 
             return RedirectToAction("Index");
         }
-    }
+
+		[HttpGet("markComplete")]
+		public IActionResult MarkComplete(int id)
+		{
+			var todoMarkComplete = _todoService.MarkComplete(id);
+			return RedirectToAction("Index");
+		}
+
+		[HttpGet("removeComplete")]
+		public IActionResult RemoveComplete()
+		{
+			_todoService.RemoveComplete();
+			return RedirectToAction("Index");
+		}
+
+		[HttpGet("add")]
+		public IActionResult AddTodo()
+		{
+			ViewBag.Categories = _filterService.GetCategories();
+			return View("AddTodo");
+		}
+
+		[HttpPost("add")]
+		public IActionResult AddTodo(CreateTodoViewModel createTodoViewModel)
+		{
+			if (createTodoViewModel.CategoryId == 0)
+			{
+				ViewBag.Categories = _filterService.GetCategories();
+				return View(createTodoViewModel);
+			}
+
+			_todoService.AddTodo(createTodoViewModel);
+			return RedirectToAction("Index");
+		}
+	}
 }
